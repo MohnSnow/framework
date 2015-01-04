@@ -12,12 +12,8 @@
 
 	<groupId>com.edwin</groupId>
 	<artifactId>common</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${module.version}</version>
 	<name>common</name>
 	<url>http://maven.apache.org</url>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 
 </project>
