@@ -20,7 +20,11 @@ public class TestInterceptorImpl1 implements Interceptor {
 
         System.out.println(TestInterceptorImpl1.class.getName());
 
-        return invocation.proceed();
+        Object result = invocation.proceed();
+
+        System.out.println(TestInterceptorImpl1.class.getName());
+
+        return result;
     }
 
     @Override
