@@ -98,4 +98,9 @@ public class RuleDefault implements Rule, Serializable {
         // List<String> buIdList = Arrays.asList(buIds.split(","));
         return null;
     }
+
+    @Override
+    public boolean run() {
+        return this.getPredicate().evaluate(this);
+    }
 }

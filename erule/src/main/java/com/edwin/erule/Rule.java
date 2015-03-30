@@ -12,6 +12,13 @@ import java.util.Map;
 public interface Rule extends Cloneable {
 
     /**
+     * 执行规则
+     * 
+     * @return
+     */
+    public boolean run();
+
+    /**
      * 获取规则ID
      * 
      * @return
