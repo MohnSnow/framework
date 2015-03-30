@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>framework</groupId>
+		<artifactId>framework</artifactId>
+		<version>0.0.1</version>
+	</parent>
+
+	<groupId>com.edwin</groupId>
+	<artifactId>erule</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>erule</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<java.src.version>1.6</java.src.version>
+		<java.target.version>1.6</java.target.version>
+		<servlet.version>2.4</servlet.version>
+		<spring.version>2.5.6</spring.version>
+		<struts.version>2.1.8</struts.version>
+		<project.encoding>UTF-8</project.encoding>
+		<repo.internal.snapshots.url>http://mvnrepository.com/artifact/snapshots</repo.internal.snapshots.url>
+		<repo.internal.releases.url>http://mvnrepository.com/artifact/releases</repo.internal.releases.url>
+		<repo.external.url>http://mvnrepository.com/artifact//third-party</repo.external.url>
+		<repo.proxy.url>http://mvnrepository.com/artifact/repo</repo.proxy.url>
+	</properties>
+
+	<ciManagement>
+		<system>hudson</system>
+		<url>${hudson url}</url>
+		<notifiers>
+			<notifier>
+				<type>mail</type>
+				<sendOnError>true</sendOnError>
+				<sendOnFailure>true</sendOnFailure>
+				<sendOnSuccess>false</sendOnSuccess>
+				<sendOnWarning>false</sendOnWarning>
+				<configuration>
+					<address>jinming.wu@dianping.com</address>
+				</configuration>
+			</notifier>
+		</notifiers>
+	</ciManagement>
+
+	<issueManagement>
+		<system>Bugzilla</system>
+		<url>${Bugzilla url}</url>
+	</issueManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ognl</groupId>
+			<artifactId>ognl</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>${project.encoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.src.version}</source>
+					<target>${java.target.version}</target>
+					<encoding>${project.encoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<workspace>${basedir}</workspace>
+					<workspaceCodeStylesURL>
+						http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml
+					</workspaceCodeStylesURL>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<updateReleaseInfo>true</updateReleaseInfo>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<distributionManagement>
+		<repository>
+			<id>dianping.repo</id>
+			<name>internal corporate repository</name>
+			<url>${repo.internal.releases.url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>dianping.repo.snapshots</id>
+			<name>internal corporate snapshots repository</name>
+			<url>${repo.internal.snapshots.url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>dianping-internal-snapshots</id>
+			<name>Dian Ping internal repository for snapshots artifacts</name>
+			<url>${repo.internal.snapshots.url}</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>dianping-internal-releases</id>
+			<name>Dian Ping internal repository for released artifacts</name>
+			<url>${repo.internal.releases.url}</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+		<!-- no snapshot allowed for external repositories -->
+		<pluginRepository>
+			<id>dianping-central-cache</id>
+			<name>Dian Ping cache to external repositories</name>
+			<url>${repo.external.url}</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>central</id>
+			<name>Platform proxy to external repositories</name>
+			<url>${repo.proxy.url}</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
