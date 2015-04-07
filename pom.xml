@@ -53,6 +53,7 @@
 		<module>common</module>
 		<module>interceptor</module>
     <module>erule</module>
+    <module>config</module>
   </modules>
 
 	<build>
