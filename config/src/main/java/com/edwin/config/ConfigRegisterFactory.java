@@ -16,5 +16,5 @@ public interface ConfigRegisterFactory {
      * @param environment
      * @return
      */
-    public ConfigRegister generateConfigRegister(Environment environment);
+    public ConfigRegister generateConfigRegister(Environment environment) throws Exception;
 }
