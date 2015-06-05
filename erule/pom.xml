@@ -39,7 +39,7 @@
 				<sendOnSuccess>false</sendOnSuccess>
 				<sendOnWarning>false</sendOnWarning>
 				<configuration>
-					<address>jinming.wu@dianping.com</address>
+					<address>wjmdhu@126.com</address>
 				</configuration>
 			</notifier>
 		</notifiers>
@@ -132,12 +132,12 @@
 
 	<distributionManagement>
 		<repository>
-			<id>dianping.repo</id>
+			<id>edwin.repo</id>
 			<name>internal corporate repository</name>
 			<url>${repo.internal.releases.url}</url>
 		</repository>
 		<snapshotRepository>
-			<id>dianping.repo.snapshots</id>
+			<id>edwin.repo.snapshots</id>
 			<name>internal corporate snapshots repository</name>
 			<url>${repo.internal.snapshots.url}</url>
 		</snapshotRepository>
@@ -146,8 +146,8 @@
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>dianping-internal-snapshots</id>
-			<name>Dian Ping internal repository for snapshots artifacts</name>
+			<id>edwin-internal-snapshots</id>
+			<name>test</name>
 			<url>${repo.internal.snapshots.url}</url>
 			<snapshots>
 				<enabled>true</enabled>
@@ -157,8 +157,8 @@
 			</releases>
 		</pluginRepository>
 		<pluginRepository>
-			<id>dianping-internal-releases</id>
-			<name>Dian Ping internal repository for released artifacts</name>
+			<id>edwin-internal-releases</id>
+			<name>test</name>
 			<url>${repo.internal.releases.url}</url>
 			<snapshots>
 				<enabled>false</enabled>
@@ -169,8 +169,8 @@
 		</pluginRepository>
 		<!-- no snapshot allowed for external repositories -->
 		<pluginRepository>
-			<id>dianping-central-cache</id>
-			<name>Dian Ping cache to external repositories</name>
+			<id>edwin-central-cache</id>
+			<name>test</name>
 			<url>${repo.external.url}</url>
 			<snapshots>
 				<enabled>false</enabled>

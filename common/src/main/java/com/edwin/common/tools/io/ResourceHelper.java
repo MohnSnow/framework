@@ -128,7 +128,7 @@ public class ResourceHelper {
         try {
             return getURL(resource).openConnection().getInputStream();
         } catch (IOException e) {
-            throw new FileNotFoundException("Resource [" + resource + "] is  neither a URL not a valid file path");
+            throw new FileNotFoundException("Resource [" + resource + "] is neither a URL not a valid file path");
         }
     }
 
