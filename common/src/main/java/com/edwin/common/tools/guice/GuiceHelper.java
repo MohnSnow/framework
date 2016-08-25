@@ -1,4 +1,4 @@
-package com.edwin.common.tools.lang;
+package com.edwin.common.tools.guice;
 
 import com.edwin.common.tools.Hello;
 import com.edwin.common.tools.HelloImpl;
