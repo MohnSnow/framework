@@ -1,9 +1,5 @@
-package com.edwin.common.tools.guice;
+package com.edwin.common.test.guice;
 
-import com.edwin.common.tools.Hello;
-import com.edwin.common.tools.HelloImpl;
-import com.edwin.common.tools.HelloProvider;
-import com.edwin.common.tools.Hellow;
 import com.google.inject.AbstractModule;
 import com.google.inject.Binder;
 import com.google.inject.Guice;
@@ -17,7 +13,7 @@ import com.google.inject.Singleton;
  * @author jinming.wu
  * @date 2015-5-15
  */
-public class GuiceHelper {
+public class GuiceTest {
 
     public static void main(String args[]) {
 
@@ -26,22 +22,22 @@ public class GuiceHelper {
 
             @Override
             public void configure(Binder binder) {
-                binder.bind(Hello.class).to(HelloImpl.class).in(Singleton.class);
+//                binder.bind(Hello.class).to(HelloImpl.class).in(Singleton.class);
             }
         });
-        Hello hello = in.getInstance(Hello.class);
-        hello.test();
+//        Hello hello = in.getInstance(Hello.class);
+//        hello.test();
 
         Injector injector = Guice.createInjector(new AbstractModule() {
 
             @Override
             protected void configure() {
-                bind(Hello.class).to(HelloImpl.class).in(Singleton.class);
-                bind(Hellow.class).toProvider(HelloProvider.class).in(Singleton.class);
+//                bind(Hello.class).to(HelloImpl.class).in(Singleton.class);
+//                bind(Hellow.class).toProvider(HelloProvider.class).in(Singleton.class);
             }
         });
 
-        Hello hello2 = injector.getInstance(Hello.class);
-        hello2.test();
+//        Hello hello2 = injector.getInstance(Hello.class);
+//        hello2.test();
     }
 }
