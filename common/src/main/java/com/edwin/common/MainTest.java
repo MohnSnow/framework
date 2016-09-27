@@ -12,23 +12,24 @@ import ch.hsr.geohash.GeoHash;
  */
 public class MainTest {
 
+    public synchronized void waitMethod() throws InterruptedException {
+        this.wait();
+        System.out.println("waitMethod");
+    }
+    
+    public  void notifyMethod() throws InterruptedException {
+        this.notify();
+        System.out.println("notifyMethod");
+    }
+
     public static void main(String args[]) {
-        double lon = 116.312528, lat = 39.983733;
-        int radius = 1;
-        SpatialContext geo = SpatialContext.GEO;
-        Rectangle rectangle = geo.getDistCalc().calcBoxByDistFromPt(geo.makePoint(lon, lat),
-                                                                    radius * DistanceUtils.KM_TO_DEG, geo, null);
-        System.out.println(rectangle.getMinX() + "-" + rectangle.getMaxX());
-        System.out.println(rectangle.getMinY() + "-" + rectangle.getMaxY());
+        final MainTest ma = new MainTest();
+        Thread t1 = new Thread(new Runnable() {
 
-        System.out.println(GeohashUtils.encodeLatLon(lat, lon, 10));
+            @Override
+            public void run() {
 
-        // 计算周围8个区域的geohash
-        GeoHash geoHash = GeoHash.withCharacterPrecision(lat, lon, 10);
-        System.out.println(geoHash.toBase32());
-        GeoHash[] adjacent = geoHash.getAdjacent();
-        for (GeoHash hash : adjacent) {
-            System.out.println(hash.toBase32());
-        }
+            }
+        });
     }
 }
