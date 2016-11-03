@@ -16,20 +16,18 @@ public class MainTest {
         this.wait();
         System.out.println("waitMethod");
     }
-    
-    public  void notifyMethod() throws InterruptedException {
+
+    public void notifyMethod() throws InterruptedException {
         this.notify();
         System.out.println("notifyMethod");
     }
 
     public static void main(String args[]) {
-        final MainTest ma = new MainTest();
-        Thread t1 = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-
-            }
-        });
+        int x = -1 << 31 >> 1;
+        System.out.println(Integer.toBinaryString(x));
+        x = x >> 32;
+        //System.out.println(x);
+        //System.out.println(Integer.toBinaryString(x));
+        //System.out.println(Integer.toBinaryString(-1));
     }
 }

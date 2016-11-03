@@ -1,4 +1,4 @@
-package com.edwin.common.test.guava;
+package com.edwin.common.test.guava.ratelimit;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -17,7 +17,7 @@ import com.google.common.util.concurrent.RateLimiter;
 public class RateLimiterTest {
 
     /**
-     * 平均速率
+     * 平均速率SmoothBursty
      * 
      * @throws InterruptedException
      */
@@ -34,7 +34,7 @@ public class RateLimiterTest {
     }
 
     /**
-     * 平滑突发
+     * 平滑突发SmoothBursty
      * 
      * @throws InterruptedException
      */
@@ -47,12 +47,14 @@ public class RateLimiterTest {
     }
 
     /**
-     * 并发限制
-     * @throws IOException 
+     * 并发限制SmoothBursty
+     * 
+     * @throws IOException
      */
     @Test
-    public void testConcurrent() throws IOException {
+    public void testConcurrent() throws Exception {
         final RateLimiter limiter = RateLimiter.create(5);
+        //Thread.sleep(1000);
         ExecutorService executor = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 10; i++) {
             executor.submit(new Runnable() {
@@ -65,20 +67,20 @@ public class RateLimiterTest {
         }
         System.in.read();
     }
-    
+
     /**
-     * 平滑过度速率，一些系统的冷启动会用到
+     * 平滑过度速率，一些系统的冷启动会用到，基于Leaky bucket算法实现（漏桶）SmoothWarmingUp
      * 
      * @throws InterruptedException
      */
     @Test
-    public void testExcessiveRate() throws InterruptedException{
+    public void testExcessiveRate() throws InterruptedException {
         RateLimiter limiter = RateLimiter.create(5, 1000, TimeUnit.MILLISECONDS); // 每秒5个令牌，1000ms后趋于正常速率
-        for(int i = 1; i < 5;i++) {
+        for (int i = 1; i < 5; i++) {
             System.out.println(limiter.acquire());
         }
         Thread.sleep(1000L);
-        for(int i = 1; i < 5;i++) {
+        for (int i = 1; i < 5; i++) {
             System.out.println(limiter.acquire());
         }
     }

@@ -6,12 +6,14 @@ import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.concurrent.ConcurrentHashMap;
 
-/** 
+/**
+ * 从默认配置文件加载类，使用的是JDK提供的ServiceLoader 非常好用，在pigeon中大量使用
+ * 
  * @author jinming
  */
 public class ExtensionLoader {
-    
-    private static Map<Class<?>, Object> extensionMap = new ConcurrentHashMap<Class<?>, Object>();
+
+    private static Map<Class<?>, Object>  extensionMap     = new ConcurrentHashMap<Class<?>, Object>();
 
     private static Map<Class<?>, List<?>> extensionListMap = new ConcurrentHashMap<Class<?>, List<?>>();
 
@@ -57,4 +59,3 @@ public class ExtensionLoader {
     }
 
 }
-  
